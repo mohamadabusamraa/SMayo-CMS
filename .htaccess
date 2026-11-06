@@ -1,0 +1,16 @@
+Options -Indexes
+RewriteEngine On
+
+# Keep the Phase 1 query-string locale URLs working while using clean routes.
+RewriteCond %{QUERY_STRING} (^|&)lang=ar(&|$) [NC]
+RewriteRule ^$ ar/ [R=302,L]
+
+# English is the default for visitors arriving at the site root.
+RewriteRule ^$ en/ [R=302,L]
+RewriteRule ^(en|ar)$ $1/ [R=302,L,NC]
+
+# Route only localized homepage paths; admin, installer, API, and uploads stay untouched.
+RewriteRule ^(en|ar)/?$ index.php?__locale=$1 [QSA,L,NC]
+
+# Unknown language-like root paths safely land on the English homepage.
+RewriteRule ^[a-z]{2,3}(-[a-z]{2})?/?$ en/ [R=302,L,NC]
