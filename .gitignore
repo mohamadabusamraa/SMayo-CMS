@@ -1,0 +1,6 @@
+/smayo_private/config/database.php
+/smayo_private/storage/backups/*
+!/smayo_private/storage/backups/.gitkeep
+/smayo_private/storage/logs/*
+!/smayo_private/storage/logs/.gitkeep
+/smayo_private/storage/installed.lock
